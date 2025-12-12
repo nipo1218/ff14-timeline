@@ -3,14 +3,14 @@
 // Firebase初期化・設定
 // ========================================
 
-// ⚠️ 以下の設定は自分のFirebaseプロジェクトの値に置き換えてください
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAHbxEmyIoW-sbUtTuospjEoEoVQd6ztgU",
+  authDomain: "nipo-timeline.firebaseapp.com",
+  projectId: "nipo-timeline",
+  storageBucket: "nipo-timeline.firebasestorage.app",
+  messagingSenderId: "479478260364",
+  appId: "1:479478260364:web:e51125ac140340b988d1a9",
+  measurementId: "G-FG5G1HBHD6"
 };
 
 // 管理者のメールアドレス
