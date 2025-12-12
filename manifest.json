@@ -1,0 +1,28 @@
+{
+  "name": "FF14 タイムライン軽減表",
+  "short_name": "軽減表",
+  "description": "FF14レイドのタイムライン管理・軽減計算ツール",
+  "start_url": "/timeline.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#d32f2f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/ff14/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/ff14/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "utilities"],
+  "lang": "ja",
+  "scope": "/",
+  "prefer_related_applications": false
+}

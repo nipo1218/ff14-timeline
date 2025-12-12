@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>タイムライン軽減表</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#050505">
+  <link rel="stylesheet" href="timeline-style.css">
+</head>
+<body>
+
+  <div class="main-container">
+    <div class="header-section">
+      <div class="header-top">
+        <div id="timer">00:00</div>
+        <div class="controls-upper">
+          <button class="btn-start" onclick="startTimer()">計測開始</button>
+          <button class="btn-stop" onclick="stopTimer()">停止</button>
+          <button class="btn-mic" id="micBtn" onclick="toggleMic()">🎤</button>
+        </div>
+      </div>
+
+      <div class="keyboard-area">
+        
+        <div class="keyboard-row">
+           <div class="key-btn type-t" onclick="recordTap('single')">
+             <span class="key-char">Q</span><span class="key-label">単体</span>
+           </div>
+           <div class="key-btn type-a" onclick="recordTap('pair')">
+             <span class="key-char">W</span><span class="key-label">ペア</span>
+           </div>
+           <div class="key-btn type-a" onclick="recordTap('stack44')">
+             <span class="key-char">E</span><span class="key-label">4:4</span>
+           </div>
+           <div class="key-btn type-a" onclick="recordTap('role')">
+             <span class="key-char">R</span><span class="key-label">ロール</span>
+           </div>
+           <div class="key-btn type-t" onclick="recordTap('tank')">
+             <span class="key-char">T</span><span class="key-label">タンク</span>
+           </div>
+        </div>
+
+        <div class="keyboard-row">
+           <div class="key-btn type-a" onclick="recordTap('stack')">
+             <span class="key-char">A</span><span class="key-label">頭割り</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('spread')">
+             <span class="key-char">S</span><span class="key-label">散開</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('dot')">
+             <span class="key-char">D</span><span class="key-label">Dot</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('unknown')">
+             <span class="key-char">F</span><span class="key-label">？？？</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('gimmick')">
+             <span class="key-char">G</span><span class="key-label">ギミック</span>
+           </div>
+           <div class="key-btn type-c" onclick="recordTap('cast_start')">
+             <span class="key-char">[</span><span class="key-label">詠唱始</span>
+           </div>
+           <div class="key-btn type-c" onclick="recordTap('cast_end')">
+             <span class="key-char">]</span><span class="key-label">詠唱完</span>
+           </div>
+        </div>
+
+        <div class="keyboard-row">
+           <div class="key-btn type-s" onclick="recordTap('stop')">
+             <span class="key-char">Z</span><span class="key-label">動作禁止</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('tower')">
+             <span class="key-char">X</span><span class="key-label">塔踏み</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('gaze')">
+             <span class="key-char">C</span><span class="key-label">視線</span>
+           </div>
+           <div class="key-btn type-s" onclick="recordTap('kb')">
+             <span class="key-char">V</span><span class="key-label">ノック</span>
+           </div>
+           <div class="key-btn type-a" onclick="recordTap('burst')">
+             <span class="key-char">B</span><span class="key-label">バースト</span>
+           </div>
+           <div class="key-btn" onclick="resetDamageInput()" style="border-top: 2px solid #888;">
+             <span class="key-char">.</span><span class="key-label">Reset</span>
+           </div>
+        </div>
+
+        <div class="keyboard-row">
+           <div class="key-btn type-c" style="width: 70px;" onclick="recordSpecialCast(-10)">
+             <span class="key-char">Shift</span><span class="key-label">-10秒開始</span>
+           </div>
+           <div class="key-btn type-c" style="width: 70px;" onclick="recordSpecialCast(-5)">
+             <span class="key-char">Alt</span><span class="key-label">-5秒開始</span>
+           </div>
+           <div class="key-btn space-key type-c" style="width: 140px;" onclick="recordSpecialCastSpace()">
+             <span class="key-char">Space</span>
+             <span class="key-label">-3秒開始</span>
+           </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tabs-container" id="tabsContainer"></div>
+
+    <div class="session-toolbar">
+      <input type="text" id="defaultPrefixInput" value="煉獄4層" style="width:60px; text-align:center;">
+      <input type="text" id="sessionNameInput" class="input-session-name" oninput="updateSessionName(this.value)">
+      <button class="btn-tool btn-copy-all" onclick="copySessionToClipboard()">Copy</button>
+      <button class="btn-tool btn-delete-session" onclick="deleteCurrentSession()">削除</button>
+    </div>
+
+    <div class="log-list" id="logList"></div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">設定・ボイス</div>
+      <div class="playback-section">
+        <button class="playback-btn" id="playbackBtn" onclick="togglePlayback()">▶</button>
+        <div class="playback-display" id="playbackDisplay">-5</div>
+        <button class="global-mute-btn" id="globalMuteBtn" onclick="toggleGlobalMute()">🔇</button>
+      </div>
+    </div>
+
+    <div class="sidebar-tabs">
+      <button class="sidebar-tab-btn active" data-tab="settings-tab" onclick="switchSidebarTab('settings-tab')">HP設定</button>
+      <button class="sidebar-tab-btn" data-tab="voice-tab" onclick="switchSidebarTab('voice-tab')">ボイス</button>
+    </div>
+
+    <div class="sidebar-tab-content" id="settings-tab">
+      <div class="hp-settings-section">
+        <div class="hp-input-row">
+          <span class="hp-input-label">ヒーラーHP</span>
+          <input type="number" class="hp-input" id="minHpInput" placeholder="例: 170000">
+        </div>
+        <div class="hp-input-row">
+          <span class="hp-input-label">タンクHP</span>
+          <input type="number" class="hp-input" id="maxHpInput" placeholder="例: 200000">
+        </div>
+        <button class="hp-register-btn" onclick="registerHpSettings()">登録</button>
+      </div>
+    </div>
+
+    <div class="sidebar-tab-content hidden" id="voice-tab">
+      <div class="voice-library-section">
+        <div class="voice-add-row">
+          <input type="text" class="voice-name-input" id="voiceNameInput" placeholder="名前">
+          <input type="file" id="voiceFileInput" accept="audio/*" style="display: none;">
+          <button class="voice-file-btn" onclick="document.getElementById('voiceFileInput').click()">選択</button>
+        </div>
+        <div class="voice-list" id="voiceList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="timeline-data.js"></script>
+  <script src="timeline-render.js"></script>
+  <script src="timeline-voice.js"></script>
+  <script src="timeline-timer.js"></script>
+  <script src="timeline-discord.js"></script>
+</body>
+</html>

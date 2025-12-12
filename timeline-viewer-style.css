@@ -1,0 +1,496 @@
+/* timeline-viewer-style.css */
+/* 閲覧者モード・認証UI・モーダル用追加スタイル */
+
+/* ========================================
+   認証UI
+   ======================================== */
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.auth-btn {
+  padding: 6px 14px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+
+.auth-btn:hover {
+  background: #357abd;
+}
+
+.auth-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #f44336, #ff9800);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-email {
+  color: #888;
+  font-size: 12px;
+}
+
+/* ========================================
+   閲覧者モード用スタイル
+   ======================================== */
+.viewer-log-item {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.viewer-row-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.log-title-display {
+  font-weight: bold;
+  color: #fff;
+  flex: 1;
+}
+
+.log-memo-display {
+  color: #888;
+  font-size: 13px;
+  flex: 1;
+}
+
+.notification-row-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.notification-row-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.notification-row-btn.muted {
+  opacity: 0.5;
+}
+
+.viewer-mit-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.viewer-mit-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.viewer-mit-icon {
+  width: 28px;
+  height: 28px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.viewer-mit-icon:hover {
+  opacity: 0.7;
+}
+
+.viewer-mit-icon.selected {
+  opacity: 1;
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.viewer-dmg-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.viewer-input {
+  flex: 1;
+  padding: 6px 10px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.viewer-input:focus {
+  outline: none;
+  border-color: #d32f2f;
+}
+
+.viewer-btn-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.viewer-reset-btn {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid #666;
+  border-radius: 4px;
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewer-reset-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+.no-logs {
+  text-align: center;
+  color: #666;
+  padding: 40px;
+  font-size: 14px;
+}
+
+/* ========================================
+   タイムライン追加ボタン（左下固定）
+   ======================================== */
+.add-timeline-fab {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d32f2f, #f44336);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.add-timeline-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
+}
+
+.add-timeline-fab:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   モーダル
+   ======================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-20px);
+  transition: transform 0.3s;
+}
+
+.modal-overlay.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #888;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #333;
+  color: #fff;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-label {
+  font-size: 13px;
+  color: #888;
+}
+
+.modal-input {
+  padding: 10px 12px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: #d32f2f;
+}
+
+.time-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-input-small {
+  width: 60px;
+  padding: 10px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.time-separator {
+  font-size: 20px;
+  color: #666;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #333;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.modal-btn-cancel {
+  background: #333;
+  color: #888;
+}
+
+.modal-btn-cancel:hover {
+  background: #444;
+  color: #fff;
+}
+
+.modal-btn-primary {
+  background: linear-gradient(135deg, #d32f2f, #f44336);
+  color: white;
+}
+
+.modal-btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+}
+
+/* ========================================
+   通知トグルボタン
+   ======================================== */
+.notification-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #555;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.notification-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.notification-toggle-btn.disabled {
+  opacity: 0.5;
+}
+
+/* ========================================
+   管理者用コントロール
+   ======================================== */
+.admin-toolbar {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(211, 47, 47, 0.1);
+  border: 1px solid rgba(211, 47, 47, 0.3);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-btn {
+  padding: 8px 16px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.admin-btn:hover {
+  background: #b71c1c;
+}
+
+.admin-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.admin-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* ========================================
+   再生コントロール拡張
+   ======================================== */
+.playback-controls-extended {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+/* ========================================
+   自動スクロールハイライト
+   ======================================== */
+.log-item.current-playback {
+  border-color: #4caf50 !important;
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.4);
+}
+
+/* ========================================
+   レスポンシブ調整
+   ======================================== */
+@media (max-width: 600px) {
+  .auth-section {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .add-timeline-fab {
+    bottom: 15px;
+    left: 15px;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 16px;
+  }
+  
+  .viewer-row-top {
+    flex-wrap: wrap;
+  }
+  
+  .log-title-display,
+  .log-memo-display {
+    flex-basis: 100%;
+  }
+}
